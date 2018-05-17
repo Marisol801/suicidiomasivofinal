@@ -1,19 +1,6 @@
-var http = require('http');
-var fileSystem = require('fs');
+var http = require('http')
 
-var server = http.createServer(function(req, resp) {
-    fileSystem.readFile('./index.html', function(error, fileContent) {
-        if (error) {
-            resp.writeHead(500, { 'Content-Type': 'text/plain' });
-            resp.end('Error');
-        } else {
-            resp.writeHead(200, { 'Content-Type': 'text/html' });
-            resp.write(fileContent);
-            resp.end();
-        }
-    });
-});
-
-server.listen(80);
-
-console.log('Listening at: localhost:8080');
+http.createServer(function(req, res) {
+    res.writeHead(200, { "Content-Type": "text/plain" })
+    res.end("Hello world\n")
+}).listen(process.env.PORT)
