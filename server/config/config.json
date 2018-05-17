@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "root",
+    "dialect": "mysql",
+    "password": "",
+    "database": "todos_dev",
+    "host": "127.0.0.1",
+    "port": 3306,
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "",
+    "database": "todos_test",
+    "host": "127.0.0.1",
+    "port": 3306
+  },
+  "production": {
+    "username": "tohcsyctlwdxqv",
+    "password": "04b565f1a59ed8093bf60399a3e10602842a6d3be207e5c9688b4f51ad8a1811",
+    "database": "d8tiifm04fmmq7",
+    "host": "ec2-174-129-26-203.compute-1.amazonaws.com",
+    "port": 5432,
+    "dialect": "postgres"
+  }
+}
