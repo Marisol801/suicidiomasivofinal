@@ -1,11 +1,11 @@
 {
-  "name": "proyecto3",
-  "version": "1.0.0",
-  "description": "server",
-  "main": "serverxd.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "saul",
-  "license": "ISC"
+    "name": "proyecto3",
+    "version": "1.0.0",
+    "description": "server",
+    "main": "serverxd.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "author": "saul",
+    "license": "ISC"
 }
