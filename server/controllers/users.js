@@ -13,17 +13,27 @@ module.exports = {
     },
 
     validate(req, res) {
-        return User
-
-            .findOne({
-                where: {
-                    username: req.body.username,
-                    password: req.body.password,
-                }
-        })
-            .then(user => res.status(200).send(user))
+        return User.findAll()
+            .then(users => res.status(200).send(users))
             .catch(error => res.status(400).send(error));
     },
+
+    destroy(req, res) {
+        return User
+            .findById(req.params.userId)
+            .then(user => {
+                if (!user) {
+                    return res.status(400).send({
+                        message: 'User Not Found',
+                    });
+                }
+                return user
+                    .destroy()
+                    .then(() => res.status(204).send())
+                    .catch(error => res.status(400).send(error));
+            })
+            .catch(error => res.status(400).send(error));
+    }
 
 };
 

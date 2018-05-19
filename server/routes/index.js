@@ -6,6 +6,7 @@ module.exports = (app) => {
         message: 'Welcome to the Users API!',
     }));
 
+    app.delete('/api/users/:userId', usersController.destroy)
     app.post('/api/users', usersController.create);
     app.get('/api/users', usersController.validate);
 
