@@ -18,14 +18,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 require('./server/routes')(app);
 
 // Setup a default catch-all route that sends back a welcome message in JSON format.
-<<<<<<< HEAD
-=======
-// app.get('*', (req, res) => res.status(200).send({
-//     message: 'Welcome to the beginning of nothingness.',
-// }));
-
->>>>>>> 576aaed3d88e32a132dd60be65a18a38028bf1a1
-
 
 
 module.exports = app;
