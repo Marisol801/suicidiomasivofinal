@@ -21,7 +21,18 @@ module.exports = {
 
     validate(req, res) {
         return User.find({ where: { username: req.body.username } })
-            .then(users => res.status(200).send(users))
+            .then(user => {
+                if (!user) {
+                    return res.status(200).send({
+                        message: 'Credenciales incorrectas',
+                    });
+                }
+                if (user.password === req.body.password) {
+                    return res.status(200).send({ message: 'ok' })
+                } else {
+                    return res.status(400).send({ message: 'credenciales incorrectas' })
+                }
+            })
             .catch(error => res.status(400).send(error));
     },
 
