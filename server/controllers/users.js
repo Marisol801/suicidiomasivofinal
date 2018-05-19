@@ -12,8 +12,15 @@ module.exports = {
             .catch(error => res.status(400).send(error));
     },
 
+    list(req, res) {
+        return User
+            .findAll()
+            .then(users => res.status(201).send(users))
+            .catch(error => res.status(400).send(error));
+    },
+
     validate(req, res) {
-        return User.findAll()
+        return User.find({ where: { username: req.body.username } })
             .then(users => res.status(200).send(users))
             .catch(error => res.status(400).send(error));
     },
