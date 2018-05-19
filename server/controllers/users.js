@@ -15,8 +15,15 @@ module.exports = {
     validate(req, res) {
         return User
 
-            .then(users => res.status(200).send(users))
+            .findOne({
+                where: {
+                    username: req.body.username,
+                    password: req.body.password,
+                }
+        })
+            .then(user => res.status(200).send(user))
             .catch(error => res.status(400).send(error));
     },
 
 };
+
