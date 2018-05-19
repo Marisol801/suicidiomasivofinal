@@ -13,6 +13,7 @@ module.exports = {
     },
 
     validate(req, res) {
+<<<<<<< HEAD
         return User.findAll()
             .then(users => res.status(200).send(users))
             .catch(error => res.status(400).send(error));
@@ -36,3 +37,19 @@ module.exports = {
     }
 
 };
+=======
+        return User
+
+            .findOne({
+                where: {
+                    username: req.body.username,
+                    password: req.body.password,
+                }
+        })
+            .then(user => res.status(200).send(user))
+            .catch(error => res.status(400).send(error));
+    },
+
+};
+
+>>>>>>> 576aaed3d88e32a132dd60be65a18a38028bf1a1

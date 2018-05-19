@@ -1,11 +1,27 @@
 module.exports = (sequelize, DataTypes) => {
-  var User = sequelize.define('User', {
-    username: DataTypes.STRING,
-    password: DataTypes.STRING,
-    status: DataTypes.STRING
-  }, {});
+  const User = sequelize.define('User', {
+
+        username: {
+          type: DataTypes.STRING,
+            allowNull:false,
+            unique:true,
+        },
+        password: {
+          type: DataTypes.STRING,
+            allowNull:false,
+        },
+        status: {
+          type: DataTypes.STRING,
+            allowNull:false,
+        },
+
+
+  });
   User.associate = function(models) {
-    // associations can be defined here
+    User.hasMany(models.Chat,{
+      foreignKey:'userId',
+        as:'chaT',
+    })
   };
   return User;
 };
