@@ -9,7 +9,7 @@ module.exports = (app) => {
 
     app.delete('/api/users/:userId', usersController.destroy);
     app.post('/api/users', usersController.create);
-
+    app.put('/api/users/upgrade', usersController.update);
     app.get('/api/users', usersController.list);
     app.post('/api/users/validate', usersController.validate);
     app.post('/api/chats', chatsController.create);

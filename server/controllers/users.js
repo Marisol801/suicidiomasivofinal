@@ -37,6 +37,29 @@ module.exports = {
             .catch(error => res.status(400).send(error));
     },
 
+    update(req, res) {
+        return User
+            .findById(req.params.userId)
+            .then(user => {
+                if (!user) {
+                    return res.status(404).send({
+                        message: 'User Not Found',
+                    });
+                }
+
+                return user
+                    .update({
+                        username: req.body.username || user.username,
+                        password: req.body.password || user.password,
+                        status: req.body.status || user.status,
+                        avatar: req.body.avatar || user.avatar,
+                    })
+                    .then(updatedUser => res.status(200).send(updatedUser))
+                    .catch(error => res.status(400).send(error));
+            })
+            .catch(error => res.status(400).send(error));
+    },
+
     destroy(req, res) {
         return User
             .findById(req.params.userId)
