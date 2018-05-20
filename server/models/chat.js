@@ -1,6 +1,6 @@
 
 module.exports = (sequelize, DataTypes) => {
-  var Chat = sequelize.define('Chat', {
+  const Chat = sequelize.define('Chat', {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -11,6 +11,14 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
   Chat.associate = function(models) {
+      Chat.hasMany(models.Message,{
+          foreignKey:'chatId',
+          as:'msg',
+      }),
+        Chat.hasMany(models.Participant,{
+            foreignKey:'chatId',
+            as:'users',
+        })
     };
   return Chat;
 };

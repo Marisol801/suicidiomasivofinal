@@ -1,12 +1,21 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var message = sequelize.define('message', {
-    chatid: DataTypes.INTEGER,
-    content: DataTypes.STRING,
-    time: DataTypes.STRING
-  }, {});
-  message.associate = function(models) {
-    // associations can be defined here
+  const Message = sequelize.define('Message', {
+    senderid: {
+        type: DataTypes.INTEGER
+    },
+    content: {
+        type: DataTypes.STRING
+    },
+    time: {
+        type: DataTypes.STRING
+    },
+  });
+  Message.associate = function(models) {
+      Message.belongsTo(models.Chat,{
+          foreignKey: 'chatId',
+          onDelete: 'CASCADE',
+      });
   };
-  return message;
+  return Message;
 };
