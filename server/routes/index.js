@@ -11,7 +11,7 @@ module.exports = (app) => {
     app.delete('/api/users/:userId', usersController.destroy);
     //app.get('/api/users/:userId/chats/:type', usersController.getChatUser);
     app.post('/api/users', usersController.create);
-
+    app.put('/api/users/:userId', usersController.update);
     app.get('/api/users', usersController.list);
     app.post('/api/users/validate', usersController.validate);
     app.post('/api/chats', chatsController.create);
