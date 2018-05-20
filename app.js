@@ -15,9 +15,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Require our routes into the application.
 //require('./server/routes')(app);
 
-// Setup a default catch-all route that sends back a welcome message in JSON format.
-
 require('./server/routes')(app);
 
+// Setup a default catch-all route that sends back a welcome message in JSON format.
 
 module.exports = app;
