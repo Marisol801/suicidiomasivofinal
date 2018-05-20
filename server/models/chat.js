@@ -9,17 +9,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    participants: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
   });
   Chat.associate = function(models) {
-
-    Chat.belongsToMany(models.User,{
-        through:'user_chat',
-        foreignKey:'userId',
-        })
-  };
+    };
   return Chat;
 };

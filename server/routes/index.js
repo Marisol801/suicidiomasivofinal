@@ -1,6 +1,7 @@
 const usersController = require('../controllers').users;
 const chatsController = require('../controllers').chats;
 
+
 module.exports = (app) => {
     app.get('/api', (req, res) => res.status(200).send({
         message: 'Welcome to the Users API!',
@@ -11,4 +12,5 @@ module.exports = (app) => {
     app.get('/api/users', usersController.validate);
 
     app.post('/api/chats', chatsController.create);
+    app.get('/api/participants', chatsController.list);
 };
