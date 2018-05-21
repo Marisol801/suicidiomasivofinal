@@ -18,7 +18,7 @@ module.exports = {
                     console.log(req.body.participants[user]);
                     Participant.create({
                         userId: req.body.participants[user],
-                        chat: chat.id
+                        chatId: chat.id
                     })
                 }
 
