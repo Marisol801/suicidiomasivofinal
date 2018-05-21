@@ -28,6 +28,13 @@ module.exports = {
             .catch(error => res.status(400).send(error));
     },
 
+    participants(req, res){
+        return Participant
+            .findAll({
+                include:[{ model: User}]
+            })
+    },
+
     list(req, res) {
         return Participant.findAll()
             .then(participants => {

@@ -1,5 +1,7 @@
 const Message = require('../models').Message;
 const Participant = require('../models').Participant;
+const Chat = require('../models').Chat;
+const User = require('../models').User;
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
@@ -18,19 +20,19 @@ module.exports = {
     },
 
     msg(req, res) {
-        return Participant
-            .find({where:{chatId: req.body.chatId}})
-            .then(chatid=>{
-                console.log(chatid)
-                if (!chatid) {
-                    return res.status(400).send({
-                        message: 'Chat Not Found',
-                    });
+        return Chat
+            .findAll({ where:{id: req.body.chatId},
+                include: [{
+                    model: Participant, as: 'participants', include: [{
+                        model: User, required: false, as: 'user'
+                    }]
+                }, {
+                    model: Message, as: "messages",
                 }
-                return chatid
-                    .find({where: {chatId:req.body.chatId, [Op.not]:[{userId:req.body.senderid}],}})
-                    .then(messages => res.status(201).send(messages))
-                    .catch(error => res.status(400).send(error));
+            ]})
+            .then(chat=>{
+                console.log(chat)
+                return res.status(201).send(chat)
             })
             .catch(error => res.status(400).send(error));
     }

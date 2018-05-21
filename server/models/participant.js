@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     participant.belongsTo(models.User,{
         foreignKey: 'userId',
         onDelete: 'CASCADE',
+        as: 'user'
       });
       participant.belongsTo(models.Chat,{
           foreignKey: 'chatId',

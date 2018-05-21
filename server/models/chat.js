@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
   Chat.associate = function(models) {
       Chat.hasMany(models.Message,{
           foreignKey:'chatId',
-          as:'msg',
-      }),
+          as:'messages',
+      });
         Chat.hasMany(models.Participant,{
             foreignKey:'chatId',
             as:'users',
