@@ -1,4 +1,5 @@
 const Chat = require('../models').Chat;
+const User = require('../models').User;
 const Participant = require('../models').Participant;
 
 module.exports = {
@@ -14,7 +15,7 @@ module.exports = {
                 console.log(req.body);
                 console.log(req.body.participants.length);
 
-                for(var user in req.body.participants) {
+                for (var user in req.body.participants) {
                     console.log(req.body.participants[user]);
                     Participant.create({
                         userId: req.body.participants[user],
@@ -28,11 +29,15 @@ module.exports = {
             .catch(error => res.status(400).send(error));
     },
 
-    participants(req, res){
+    participants(req, res) {
         return Participant
             .findAll({
-                include:[{ model: User}]
+                include: [{ model: User, as: 'user' }]
             })
+            .then(participants => {
+                res.status(200).send(participants)
+            })
+            .catch(error => res.status(400).send(error));
     },
 
     list(req, res) {
@@ -44,4 +49,3 @@ module.exports = {
     }
 
 };
-

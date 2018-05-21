@@ -21,16 +21,18 @@ module.exports = {
 
     msg(req, res) {
         return Chat
-            .findAll({ where:{id: req.body.chatId},
+            .findAll({
+                where: { id: req.body.chatId },
                 include: [{
-                    model: Participant, as: 'participants', include: [{
-                        model: User, required: false, as: 'user'
-                    }]
+                    model: Participant,
+                    as: 'participants',
+                    include: [{ model: User, as: 'user' }]
                 }, {
-                    model: Message, as: "messages",
-                }
-            ]})
-            .then(chat=>{
+                    model: Message,
+                    as: "messages",
+                }]
+            })
+            .then(chat => {
                 console.log(chat)
                 return res.status(201).send(chat)
             })

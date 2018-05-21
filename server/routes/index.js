@@ -19,4 +19,5 @@ module.exports = (app) => {
     app.get('/api/users/:userId', usersController.show);
     app.post('/api/messages', messagesController.create);
     app.post('/api/messages/receive', messagesController.msg);
+    app.get('/api/users/chats/participants', chatsController.participants);
 };
