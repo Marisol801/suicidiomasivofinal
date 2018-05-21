@@ -16,7 +16,7 @@ module.exports = (app) => {
     app.post('/api/users/validate', usersController.validate);
     app.post('/api/chats', chatsController.create);
     app.get('/api/participants.js', chatsController.list);
-
+    app.get('/api/users/:userId', usersController.show);
     app.post('/api/messages', messagesController.create);
     app.post('/api/messages/receive', messagesController.msg);
 };

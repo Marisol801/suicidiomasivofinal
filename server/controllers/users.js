@@ -20,6 +20,13 @@ module.exports = {
             .catch(error => res.status(400).send(error));
     },
 
+    show(req, res) {
+        return User
+            .findById(req.params.userId)
+            .then(user => res.status(201).send(user))
+            .catch(error => res.status(400).send(error));
+    },
+
     validate(req, res) {
         return User.find({ where: { username: req.body.username } })
             .then(user => {
