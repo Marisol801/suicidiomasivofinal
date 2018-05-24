@@ -1,9 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Message = sequelize.define('Message', {
-    senderid: {
-        type: DataTypes.INTEGER
-    },
     content: {
         type: DataTypes.STRING
     },
@@ -16,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
           foreignKey: 'chatId',
           onDelete: 'CASCADE',
       });
+
+      Message.belongsTo(models.User, {
+          foreignKey: 'senderid'
+      })
   };
   return Message;
 };

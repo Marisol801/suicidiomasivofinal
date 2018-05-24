@@ -18,7 +18,13 @@ module.exports = {
         }
       },
       senderid: {
-          type: Sequelize.INTEGER
+          type: Sequelize.INTEGER,
+          onDelete: 'CASCADE',
+          references: {
+            model: 'Users',
+            key: 'id',
+            as: 'sender',
+        },
       },
       content: {
         type: Sequelize.STRING

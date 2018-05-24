@@ -24,12 +24,9 @@ module.exports = {
             .findAll({
                 where: { id: req.body.chatId },
                 include: [{
-                    model: Participant,
-                    as: 'participants',
-                    include: [{ model: User, as: 'user' }]
-                }, {
                     model: Message,
                     as: "messages",
+                    include: [{ model: User}]
                 }]
             })
             .then(chat => {
